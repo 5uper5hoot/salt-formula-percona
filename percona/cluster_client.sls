@@ -16,4 +16,4 @@
 percona-client:
   pkg:
     - latest
-    - name: percona-xtradb-cluster-client-5.6
+    - name: percona-xtradb-cluster-client-{{ salt['pillar.get']('percona:version', '5.7') }}

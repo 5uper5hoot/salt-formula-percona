@@ -19,7 +19,7 @@ include:
 percona-server:
   debconf:
     - set
-    - name: percona-xtradb-cluster-server-5.6
+    - name: percona-xtradb-cluster-server-{{ salt['pillar.get']('percona:version', '5.7') }}
     - data:
         'percona-server-server/root_password':
           type: password
@@ -30,6 +30,6 @@ percona-server:
 
   pkg:
     - latest
-    - name: percona-xtradb-cluster-server-5.6
+    - name: percona-xtradb-cluster-server-{{ salt['pillar.get']('percona:version', '5.7') }}
     - require:
       - debconf: percona-server

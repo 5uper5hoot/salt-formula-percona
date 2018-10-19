@@ -2,6 +2,7 @@ percona:
   version: 5.7
   max_connections: 100
   long_query_time: 2
+  wsrep_cluster_name: percona-cluster
 
   passwords:
     root: root-password
