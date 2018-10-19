@@ -22,4 +22,4 @@ percona-repo:
     - keyserver: keys.gnupg.net
     - require_in:
       - pkg: percona-server
-      - pkg: percona-client
+      {# - pkg: percona-client #}  # no percona-client in bionic repo

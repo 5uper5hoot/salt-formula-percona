@@ -14,7 +14,7 @@
 #
 include:
   - percona.common
-  - percona.client
+  {# - percona.client #}  # not available in bionic apt repo
 
 percona-server:
   debconf:
