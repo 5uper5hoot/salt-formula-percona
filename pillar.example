@@ -2,6 +2,8 @@ percona:
   version: 5.7
   max_connections: 100
   long_query_time: 2
+  wsrep_cluster_name: percona-cluster
+  werep_cluster_address: gcomm://192.168.50.11,192.168.50.12,192.162.50.13
 
   passwords:
     root: root-password
@@ -12,9 +14,15 @@ percona:
   nodes:
     percona1:
       server_id: 10
+      server_ip: 192.168.50.11
 
     percona2:
       server_id: 20
+      server_ip: 192.168.50.12
 
     percona3:
       server_id: 30
+      server_ip: 192.168.50.13
+
+  bootstrap:
+    initial_node: percona1
