@@ -16,10 +16,10 @@ percona-repo:
   pkgrepo:
     - managed
     - file: /etc/apt/sources.list.d/percona.list
-    - name: deb http://repo.percona.com/apt precise main
+    - name: deb http://repo.percona.com/apt {{ crumbs['oscodename'] }} main
     - human_name: Percona Apt Repo
-    - keyid: 1C4CBDCDCD2EFD2A
+    - keyid: 9334a25f8507efa5
     - keyserver: keys.gnupg.net
     - require_in:
       - pkg: percona-server
-      - pkg: percona-client
+      {# - pkg: percona-client #}  # no percona-client in bionic repo

@@ -16,4 +16,4 @@
 percona-client:
   pkg:
     - latest
-    - name: percona-server-client-5.6
+    - name: percona-server-client-{{ salt['pillar.get']('percona:version', '5.7') }}
