@@ -17,7 +17,7 @@
 
 include:
   - percona.common
-  - percona.cluster_client
+  {# - percona.cluster_client #}  # package not in bionic apt repo
 
 percona-server:
   debconf:
