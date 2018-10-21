@@ -17,7 +17,7 @@
 
 include:
   - percona.common
-  - percona.cluster_client
+  {# - percona.cluster_client #}
 
 percona-server:
   debconf:
