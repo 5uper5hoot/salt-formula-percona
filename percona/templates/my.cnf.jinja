@@ -49,15 +49,17 @@ wsrep_sst_method        = xtrabackup-v2
 wsrep_sst_auth          = xtrabackup:{{ salt['pillar.get']('percona:passwords:xtrabackup', '') }}
 wsrep_cluster_name      = {{ salt['pillar.get']('percona:wsrep_cluster_name', 'percona-cluster') }}
 wsrep_node_name         = {{ grains['host'] }}
-wsrep_node_address      = {{ salt['grains.get']('ip_interfaces:eth0', salt['grains.get']('ip_interfaces:enp0s8'))[0] }}
+wsrep_node_address      = {{ salt['pillar.get']('percona:nodes', {}).get(grains['host'], {}).get('server_ip') }}
 wsrep_provider_options  = gcache.size=2G;
 
 {% if bootstrap is defined and bootstrap -%}
 # *** WARNING - CLUSTER BOOTSTRAP MODE ENABLED ***
 wsrep_cluster_address   = gcomm://
 {% else -%}
-wsrep_cluster_address   = gcomm://{{ ",".join(salt['pillar.get']('percona:nodes', {}).keys()) }}
+wsrep_cluster_address   = {{ salt['pillar.get']('percona:wsrep_cluster_address') }}
 {% endif -%}
+
+pxc_strict_mode = ENFORCING
 
 innodb_autoinc_lock_mode        = 2
 innodb_locks_unsafe_for_binlog  = 1
