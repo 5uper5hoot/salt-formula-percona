@@ -14,6 +14,6 @@
 #
 
 percona-client:
-  pkg:
-    - latest
-    - name: percona-server-client-{{ salt['pillar.get']('percona:version', '5.7') }}
+  pkg.installed:
+    - sources:
+      - percona-server-client-{{ salt['pillar.get']('percona:version', '5.7') }}: {{ pillar['repo_url'] }}

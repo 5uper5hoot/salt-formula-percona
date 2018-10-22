@@ -12,14 +12,17 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
+
+{% set ver = salt['pillar.get']('percona:version', '5.7')|replace('.', '') %}
+
 include:
   - percona.common
-  {# - percona.client #}  # not available in bionic apt repo
+  - percona.client
 
 percona-server:
   debconf:
     - set
-    - name: percona-xtradb-cluster-server-{{ salt['pillar.get']('percona:version', '5.7') }}
+    - name: percona-xtradb-cluster-server-{{ ver }}
     - data:
         'percona-server-server/root_password':
           type: password
@@ -28,8 +31,8 @@ percona-server:
           type: password
           value: {{ salt['pillar.get']('percona:passwords:root', '') }}
 
-  pkg:
-    - latest
-    - name: percona-xtradb-cluster-server-{{ salt['pillar.get']('percona:version', '5.7') }}
+  pkg.installed:
+    - sources:
+      - percona-xtradb-cluster-server-{{ ver }}: {{ pillar['repo_url'] }}
     - require:
       - debconf: percona-server
