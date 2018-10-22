@@ -79,8 +79,8 @@ mysql:
 {{ mysql_user("root", "localhost", salt['pillar.get']('percona:passwords:root', '')) }}
 {{ mysql_grant("root", "localhost", "*.*", grant_option=True) }}
 
-{{ mysql_user("xtrabackup", "localhost", salt['pillar.get']('percona:passwords:xtrabackup', '')) }}
-{{ mysql_grant("xtrabackup", "localhost", "*.*", grant='RELOAD, LOCK TABLES, PROCESS, REPLICATION CLIENT') }}
+{{ mysql_user("sstuser", "localhost", salt['pillar.get']('percona:passwords:sstuser', '')) }}
+{{ mysql_grant("sstuser", "localhost", "*.*", grant='RELOAD, LOCK TABLES, PROCESS, REPLICATION CLIENT') }}
 
 ####################################
 ## Custom Users, Database and Grants
