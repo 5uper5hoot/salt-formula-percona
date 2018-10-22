@@ -12,8 +12,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
-
+{% set ver = salt['pillar.get']('percona:version', '5.7') %}
 percona-client:
   pkg.installed:
     - sources:
-      - percona-xtradb-cluster-client-{{ salt['pillar.get']('percona:version', '5.7') }}: {{ pillar['repo_url'] }}
+      - percona-xtradb-cluster-client-{{ ver }}: {{ pillar['repo_url'] }}

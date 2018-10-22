@@ -13,7 +13,8 @@
 #    under the License.
 #
 
+{% set ver = salt['pillar.get']('percona:version', '5.7') %}
 percona-client:
   pkg.installed:
     - sources:
-      - percona-server-client-{{ salt['pillar.get']('percona:version', '5.7') }}: {{ pillar['repo_url'] }}
+      - percona-server-client-{{ ver }}: {{ pillar['repo_url'] }}
